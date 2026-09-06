@@ -33,6 +33,26 @@ The assessment was performed against a single Linux host in an authorized traini
 
 Testing included network reconnaissance, web enumeration, exploitation, local enumeration and privilege escalation.
 
+## Methodology
+
+The assessment was performed from a black-box perspective, with no prior knowledge of the target beyond the assigned host.
+
+Testing followed a structured process consisting of network reconnaissance, service enumeration, web enumeration, exploitation, local enumeration and privilege escalation.
+
+Only techniques required to demonstrate security impact were used. Denial-of-service testing, persistence and destructive actions were outside the scope of the assessment.
+
+
+## Risk Rating
+
+Findings were assigned a severity of Critical, High, Medium or Low based on the likelihood of exploitation and the potential impact to the affected system.
+
+Critical findings represent weaknesses that can lead directly to complete system compromise or equivalent high-impact access.
+
+High findings represent significant weaknesses that materially increase an attacker's level of access or enable further compromise.
+
+Medium and Low findings represent issues with more limited exploitation potential or impact.
+
+
 ## Findings Overview
 
 | ID | Finding | Severity |
@@ -287,6 +307,10 @@ An unauthenticated remote attacker could obtain command execution on the server 
 
 Although the initial execution context was limited to `www-data`, access to the operating system enabled local enumeration and provided the starting point for subsequent privilege escalation.
 
+#### Root Cause
+
+Development tooling was deployed within a publicly accessible web directory without authentication or access restrictions.
+
 #### Recommendation
 
 Remove development utilities and web shells from web-accessible directories.
@@ -341,6 +365,10 @@ scriptmanager
 Any attacker who obtained command execution through the web application could immediately execute arbitrary commands as `scriptmanager`.
 
 This expanded the attacker's access to local files and directories that were not accessible to the original web service account and enabled the next stage of privilege escalation.
+
+#### Root Cause
+
+The sudo configuration granted the web service account unrestricted passwordless execution under another local user context instead of limiting access to specific required commands.
 
 #### Recommendation
 
@@ -404,6 +432,10 @@ An attacker who gained access to the `scriptmanager` account could execute arbit
 
 Successful exploitation resulted in complete compromise of the operating system, including access to protected files, system configuration and any credentials stored on the host.
 
+#### Root Cause
+
+A lower-privileged user was allowed to modify a script that was executed in a privileged root context.
+
 #### Recommendation
 
 All scripts executed with root privileges should be owned by root and must not be writable by lower-privileged accounts.
@@ -425,6 +457,14 @@ The following actions should be prioritised:
 5. Separate development resources from production-facing web content.
 6. Periodically audit sudo rules and privileged local automation.
 7. Review web server permissions to limit the impact of a compromised service account.
+
+## Limitations
+
+The assessment was limited to a single host within an authorized training environment.
+
+Testing did not include denial-of-service attacks, social engineering, persistence mechanisms or testing against systems outside the assigned target.
+
+The results represent the security posture observed during the assessment period and are limited to the services and attack paths identified during testing.
 
 ## Conclusion
 
