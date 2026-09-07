@@ -5,3 +5,4 @@ Professional penetration testing reports from authorized lab environments, focus
 | # | Target | OS | Key Techniques | Report |
 |---|---|---|---|---|
 | 01 | Bashed | Linux | Web RCE, sudo abuse, writable root-executed script | [View Report](01-Bashed/report.md) |
+| 02 | OpenAdmin | Linux | OpenNetAdmin RCE, credential reuse, SSH key disclosure, sudo Nano abuse | [View Report](02-OpenAdmin/report.md) |
