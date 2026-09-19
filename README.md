@@ -10,3 +10,4 @@ Professional penetration testing reports from authorized lab environments, focus
 | 04 | Admirer | Linux | Credential Disclosure → FTP Backup → Adminer File Read → Credential Reuse → PYTHONPATH Hijacking → Root | [View Report](04-Admirer/report.md) |
 | 05 | Bastion | Windows | Guest SMB Access → Windows Backup Exposure → Registry Hive Extraction → Credential Recovery → SSH Access → mRemoteNG Credential Decryption → Administrator | [View Report](05-Bastion/report.md) |
 | 06 | Return | Windows | LDAP Configuration → Credential Capture → WinRM → Server Operators → VMTools Service Abuse → LocalSystem | [View Report](06-Return/report.md) |
+| 07 | Cascade | Windows | Anonymous LDAP Enumeration → SMB Credential Disclosure → VNC Password Reuse → WinRM → Encrypted Audit Credential → AD Recycle Bin → Administrator | [View Report](07-Cascade/report.md) |
